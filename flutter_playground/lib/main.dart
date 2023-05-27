@@ -30,7 +30,10 @@ class _HomeScreenState extends State<HomeScreen> {
   List<RouteItem> _generateItems() {
     return [
       RouteItem(title: 'Simple UI Demo', routerPath: '/simpleUI'),
-      RouteItem(title: 'Drawer UI Demo', routerPath: '/drawer')
+      RouteItem(title: 'Drawer UI Demo', routerPath: '/drawer'),
+      RouteItem(title: 'Stack widget Demo', routerPath: '/stack'),
+      RouteItem(
+          title: 'Animation Control Demo', routerPath: '/animationControl'),
     ];
   }
 
