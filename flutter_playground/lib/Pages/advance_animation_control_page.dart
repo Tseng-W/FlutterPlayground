@@ -1,24 +1,36 @@
 import 'package:flutter/material.dart';
+import 'dart:math' as math;
+
+import 'Containers/count_page.dart';
 
 // Reference: https://www.youtube.com/watch?v=FCyoHclCqc8
 
-class AnimationControllerPage extends StatefulWidget {
+class AdvanceAnimationControllerPage extends StatefulWidget {
+  AdvanceAnimationControllerPage({super.key});
+
+  final double maxSlide = 225.0;
+
   @override
-  State<AnimationControllerPage> createState() =>
-      _AnimationControllerPageState();
+  State<AdvanceAnimationControllerPage> createState() =>
+      _AdvanceAnimationControllerPageState();
 }
 
-class _AnimationControllerPageState extends State<AnimationControllerPage>
+class _AdvanceAnimationControllerPageState
+    extends State<AdvanceAnimationControllerPage>
     with SingleTickerProviderStateMixin {
   late AnimationController _animationController;
   final double _minDragStartEdge = 150;
   bool _canBeDragged = true;
 
+  late final Widget child;
+
   @override
   void initState() {
     super.initState();
-    _animationController =
-        AnimationController(vsync: this, duration: Duration(milliseconds: 250));
+    _animationController = AnimationController(
+        vsync: this, duration: const Duration(milliseconds: 250));
+    child = SizedBox(
+        width: widget.maxSlide, child: Container(color: Colors.yellow));
   }
 
   void toggle() => _animationController.isDismissed
@@ -37,7 +49,7 @@ class _AnimationControllerPageState extends State<AnimationControllerPage>
 
   void _onDragUpdate(DragUpdateDetails details) {
     if (_canBeDragged && details.primaryDelta != null) {
-      double delta = details.primaryDelta! / maxSlide;
+      double delta = details.primaryDelta! / widget.maxSlide;
       _animationController.value += delta;
     }
   }
@@ -57,14 +69,8 @@ class _AnimationControllerPageState extends State<AnimationControllerPage>
     }
   }
 
-  final double maxSlide = 225.0;
-
   @override
   Widget build(BuildContext context) {
-    var drawer = Container(
-      color: Colors.blue,
-    );
-    var child = Container(color: Colors.yellow);
     return Scaffold(
       appBar: AppBar(
         title: const Text('Animation control demo'),
@@ -77,17 +83,31 @@ class _AnimationControllerPageState extends State<AnimationControllerPage>
         child: AnimatedBuilder(
           animation: _animationController,
           builder: (context, _) {
-            double slide = maxSlide * _animationController.value;
-            double scale = 1 - (_animationController.value * 0.3);
             return Stack(
               children: [
-                drawer,
-                Transform(
-                    transform: Matrix4.identity()
-                      ..translate(slide)
-                      ..scale(scale),
-                    alignment: Alignment.centerLeft,
-                    child: child)
+                Container(
+                  color: Colors.grey,
+                ),
+                Transform.translate(
+                  offset: Offset(maxSlide * _animationController.value, 0),
+                  child: Transform(
+                      transform: Matrix4.identity()
+                        ..setEntry(3, 2, 0.001)
+                        ..rotateY(-math.pi / 2 * _animationController.value),
+                      alignment: Alignment.centerLeft,
+                      child: const CounterPage()),
+                ),
+                Transform.translate(
+                  offset:
+                      Offset(maxSlide * (_animationController.value - 1), 0),
+                  child: Transform(
+                      transform: Matrix4.identity()
+                        ..setEntry(3, 2, 0.001)
+                        ..rotateY(
+                            math.pi / 2 * (1 - _animationController.value)),
+                      alignment: Alignment.centerRight,
+                      child: child),
+                )
               ],
             );
           },

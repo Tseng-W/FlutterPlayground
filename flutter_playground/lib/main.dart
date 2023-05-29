@@ -34,6 +34,9 @@ class _HomeScreenState extends State<HomeScreen> {
       RouteItem(title: 'Stack widget Demo', routerPath: '/stack'),
       RouteItem(
           title: 'Animation Control Demo', routerPath: '/animationControl'),
+      RouteItem(
+          title: 'Advance Animation Control Demo',
+          routerPath: '/advanceAnimationControl'),
     ];
   }
 

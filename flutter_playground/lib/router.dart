@@ -6,6 +6,7 @@ import 'Pages/simple_ui_page.dart';
 import 'Pages/drawer_page.dart';
 import 'Pages/animation_controller_page.dart';
 import 'Pages/stack_page.dart';
+import 'Pages/advance_animation_control_page.dart';
 
 typedef RouteCallback = void Function(BuildContext context);
 
@@ -39,6 +40,10 @@ final GoRouter router = GoRouter(initialLocation: '/', routes: [
       GoRoute(
         path: 'animationControl',
         builder: (context, state) => AnimationControllerPage(),
+      ),
+      GoRoute(
+        path: 'advanceAnimationControl',
+        builder: (context, state) => AdvanceAnimationControllerPage(),
       ),
       GoRoute(
         path: 'stack',
