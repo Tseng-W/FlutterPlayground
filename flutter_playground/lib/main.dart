@@ -37,6 +37,7 @@ class _HomeScreenState extends State<HomeScreen> {
       RouteItem(
           title: 'Advance Animation Control Demo',
           routerPath: '/advanceAnimationControl'),
+      RouteItem(title: 'Animation Paging Demo', routerPath: '/animationPaging'),
     ];
   }
 

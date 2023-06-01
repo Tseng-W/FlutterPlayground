@@ -89,7 +89,8 @@ class _AdvanceAnimationControllerPageState
                   color: Colors.grey,
                 ),
                 Transform.translate(
-                  offset: Offset(maxSlide * _animationController.value, 0),
+                  offset:
+                      Offset(widget.maxSlide * _animationController.value, 0),
                   child: Transform(
                       transform: Matrix4.identity()
                         ..setEntry(3, 2, 0.001)
@@ -98,8 +99,8 @@ class _AdvanceAnimationControllerPageState
                       child: const CounterPage()),
                 ),
                 Transform.translate(
-                  offset:
-                      Offset(maxSlide * (_animationController.value - 1), 0),
+                  offset: Offset(
+                      widget.maxSlide * (_animationController.value - 1), 0),
                   child: Transform(
                       transform: Matrix4.identity()
                         ..setEntry(3, 2, 0.001)

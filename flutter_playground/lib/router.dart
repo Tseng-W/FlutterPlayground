@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_playground/Pages/animation_paging_page.dart';
 import 'package:flutter_playground/main.dart';
 import 'package:go_router/go_router.dart';
 
@@ -47,8 +48,12 @@ final GoRouter router = GoRouter(initialLocation: '/', routes: [
       ),
       GoRoute(
         path: 'stack',
-        builder: (context, state) => StackDemoPage(),
+        builder: (context, state) => const StackDemoPage(),
       ),
+      GoRoute(
+        path: 'animationPaging',
+        builder: (context, state) => const AnimationPagingPage(),
+      )
     ],
   ),
 ]);
