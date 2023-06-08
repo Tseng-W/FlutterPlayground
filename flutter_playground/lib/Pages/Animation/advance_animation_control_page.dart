@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
 
-import 'Containers/count_page.dart';
+import '../Containers/count_page.dart';
 
 // Reference: https://www.youtube.com/watch?v=FCyoHclCqc8
 

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_playground/Components/item_fader.dart';
-import 'Containers/count_page.dart';
 
 class AnimationPagingPage extends StatelessWidget {
   const AnimationPagingPage({super.key});
@@ -124,7 +123,7 @@ class _PageState extends State<_Page> {
     }
   }
 
-  void onTap() async {
+  void onTap(Offset offset) async {
     for (GlobalKey<ItemFaderState> key in keys) {
       await Future.delayed(const Duration(milliseconds: 40));
       key.currentState?.hide();
@@ -192,7 +191,7 @@ class _PageState extends State<_Page> {
 
 class _OptionItem extends StatefulWidget {
   final String name;
-  final VoidCallback onOptionSelected;
+  final Function(Offset) onOptionSelected;
 
   const _OptionItem({required this.name, required this.onOptionSelected});
 
@@ -204,7 +203,9 @@ class _OptionItemState extends State<_OptionItem> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: widget.onOptionSelected,
+      onTap: (() {
+        RenderObject? object = context.findRenderObject();
+      }),
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 16),
         child: Row(
@@ -212,13 +213,10 @@ class _OptionItemState extends State<_OptionItem> {
             const SizedBox(
               width: 26,
             ),
-            SizedBox(
+            const SizedBox(
               width: 8,
               height: 8,
-              child: Container(
-                decoration: const BoxDecoration(
-                    shape: BoxShape.circle, color: Colors.white),
-              ),
+              child: Dot(),
             ),
             const SizedBox(
               width: 26,
@@ -232,6 +230,49 @@ class _OptionItemState extends State<_OptionItem> {
           ],
         ),
       ),
+    );
+  }
+}
+
+class AnimationDot extends StatelessWidget {
+  late AnimationController _animationController;
+
+  AnimationDot({super.key});
+
+  Future<void> animationDot(Offset startOffset) async {
+    OverlayEntry entry = OverlayEntry(builder: ((context) {
+      double minTop = MediaQuery.of(context).padding.top + 64;
+      return AnimatedBuilder(
+        animation: _animationController,
+        builder: ((context, child) {
+          return Positioned(
+              left: 76,
+              top: minTop +
+                  (startOffset.dy - minTop) * (1 - _animationController.value),
+              child: this);
+        }),
+        child: const Dot(),
+      );
+    }));
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration:
+          const BoxDecoration(shape: BoxShape.circle, color: Colors.white),
+    );
+  }
+}
+
+class Dot extends StatelessWidget {
+  const Dot({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration:
+          const BoxDecoration(shape: BoxShape.circle, color: Colors.white),
     );
   }
 }

@@ -32,6 +32,7 @@ class _HomeScreenState extends State<HomeScreen> {
       RouteItem(title: 'Simple UI Demo', routerPath: '/simpleUI'),
       RouteItem(title: 'Drawer UI Demo', routerPath: '/drawer'),
       RouteItem(title: 'Stack widget Demo', routerPath: '/stack'),
+      RouteItem(title: 'Draggable widget Demo', routerPath: '/draggablePage'),
       RouteItem(
           title: 'Animation Control Demo', routerPath: '/animationControl'),
       RouteItem(

@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 // Reference: https://www.youtube.com/watch?v=FCyoHclCqc8
 
 class AnimationControllerPage extends StatefulWidget {
+  const AnimationControllerPage({super.key});
+
   @override
   State<AnimationControllerPage> createState() =>
       _AnimationControllerPageState();

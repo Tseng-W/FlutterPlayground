@@ -1,8 +1,9 @@
+
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-class SimpleUIPage extends StatelessWidget {
-  SimpleUIPage({super.key});
+class TextPage extends StatelessWidget {
+  TextPage({super.key});
 
   double? maxTextHeight;
   double? maxTextWidth;

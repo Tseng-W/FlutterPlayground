@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_playground/Pages/animation_paging_page.dart';
 import 'package:flutter_playground/main.dart';
 import 'package:go_router/go_router.dart';
 
-import 'Pages/simple_ui_page.dart';
-import 'Pages/drawer_page.dart';
-import 'Pages/animation_controller_page.dart';
-import 'Pages/stack_page.dart';
-import 'Pages/advance_animation_control_page.dart';
+import 'Pages/Component/text_page.dart';
+import 'Pages/Component/drawer_page.dart';
+import 'Pages/Animation/animation_controller_page.dart';
+import 'Pages/Animation/animation_paging_page.dart';
+import 'Pages/Component/stack_page.dart';
+import 'Pages/Animation/advance_animation_control_page.dart';
+import 'Pages/Component/draggable_page.dart';
 
 typedef RouteCallback = void Function(BuildContext context);
 
@@ -32,7 +33,7 @@ final GoRouter router = GoRouter(initialLocation: '/', routes: [
     routes: [
       GoRoute(
         path: 'simpleUI',
-        builder: (context, state) => SimpleUIPage(),
+        builder: (context, state) => TextPage(),
       ),
       GoRoute(
         path: 'drawer',
@@ -53,7 +54,9 @@ final GoRouter router = GoRouter(initialLocation: '/', routes: [
       GoRoute(
         path: 'animationPaging',
         builder: (context, state) => const AnimationPagingPage(),
-      )
+      ),
+      GoRoute(
+          path: 'draggablePage', builder: ((context, state) => DraggablePage()))
     ],
   ),
 ]);
